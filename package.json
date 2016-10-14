@@ -1,6 +1,6 @@
 {
   "name": "promise-all-properties",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "main": "lib/promiseAllProperties",
   "scripts": {
@@ -12,6 +12,7 @@
   "license": "Unlicense",
   "devDependencies": {
     "babel-cli": "^6.16.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
