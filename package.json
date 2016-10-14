@@ -1,6 +1,6 @@
 {
   "name": "promise-all-properties",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "main": "lib/promiseAllProperties",
   "scripts": {
