@@ -2,7 +2,7 @@
  * Receives an object with promise containing properties and returns a promise that resolves to an object
  * with the same properties containing the resolved values
  * @param  {Object} promisesObject  the input object with a promise in each property
- * @return {Pormise}  a promise that resolved to an object with the same properties containing the resolved values
+ * @return {Promise}  a promise that resolved to an object with the same properties containing the resolved values
  */
 export default function promiseAllProperties(promisesObject) {
   if (typeof(promisesObject) !== 'object') {
