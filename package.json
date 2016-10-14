@@ -1,12 +1,16 @@
 {
   "name": "promise-all-properties",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "main": "lib/promiseAllProperties",
   "scripts": {
     "test": "mocha --recursive --compilers js:babel-register",
     "dev-test": "mocha --watch --recursive --compilers js:babel-register",
     "prepublish": "babel -d lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcelowa/promise-all-properties.git"
   },
   "author": "Marcelo Waisman",
   "license": "Unlicense",
