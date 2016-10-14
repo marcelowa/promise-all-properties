@@ -1,4 +1,5 @@
 # Promise all properties
+[![Build Status](https://travis-ci.org/marcelowa/promise-all-properties.svg?branch=master)](https://travis-ci.org/marcelowa/promise-all-properties)
 
 A helper function that receives an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises.  
 
