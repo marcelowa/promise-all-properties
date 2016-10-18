@@ -14,9 +14,6 @@ export default function promiseAllProperties(promisesObject) {
 
   for (const property in promisesObject) {
     const promise = promisesObject[property];
-    if (!(promise instanceof Promise)) {
-      return Promise.reject(`The property ${property} must contain a promise`)
-    }
 
     promisesArray.push(promise);
     propertiesIndex.push(property);
