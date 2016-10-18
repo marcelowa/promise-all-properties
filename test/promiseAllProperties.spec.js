@@ -11,8 +11,10 @@ describe('promiseAllProperties', () => {
       return expect(promiseAllProperties()).to.be.rejectedWith('The input argument must be of type Object');
     });
 
-    it('should reject if the input object contains a non promise property', () => {
-      return expect(promiseAllProperties({x: 1})).to.be.rejectedWith('The property x must contain a promise');
+    it('should not reject if the input object contains a non promise property', () => {
+      return expect(promiseAllProperties({x: 1})).to.eventually.contain({
+          x: 1,
+      });
     });
 
   });
