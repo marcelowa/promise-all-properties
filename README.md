@@ -34,12 +34,12 @@ promise.then((resolvedObject) => {
 
 ## Run tests:
 ```bash
-yarn test
+npm test
 ```
 
 ## Build:
 ```bash
-yarn build
+npm run build
 ```
 
 ## Developers:
