@@ -8,7 +8,8 @@ const expect = chai.expect;
 describe('promiseAllProperties', () => {
   describe('validation rejections', () => {
     it('should reject if not receiving an object', () => {
-      return expect((promiseAllProperties as any)()).to.be.rejectedWith('The input argument must be of type Object');
+      expect((promiseAllProperties as any)()).to.be.rejectedWith('The input argument must be of type Object');
+      return expect((promiseAllProperties as any)(null)).to.be.rejectedWith('The input argument must be of type Object');
     });
 
     it('should not reject if the input object contains a non promise property', () => {

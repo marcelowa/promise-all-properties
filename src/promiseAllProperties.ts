@@ -7,7 +7,7 @@ export type PromisesMap<T> = { [P in keyof T]: Promise<T[P]> | T[P] };
  * @return {Promise<T>}  a promise that resolved to an object with the same properties containing the resolved values
  */
 export default function promiseAllProperties<T>(promisesMap: PromisesMap<T>): Promise<T> {
-  if (typeof promisesMap !== 'object') {
+  if (promisesMap === null || typeof promisesMap !== 'object') {
     return Promise.reject('The input argument must be of type Object');
   }
 
