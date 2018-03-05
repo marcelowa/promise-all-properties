@@ -9,6 +9,7 @@ The returned promise is rejected in the following cases:
 
 ## Requirements
 * ES6 Promise supporting javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
+* yarn installed
 
 ## Usage example (ES6):
 ```javascript
@@ -33,11 +34,13 @@ promise.then((resolvedObject) => {
 
 ## Run tests:
 ```bash
-npm test
+yarn test
 ```
 
-## Todo:
-- Integrate lint
+## Build:
+```bash
+yarn build
+```
 
 ## Developers:
 PR's are welcome just make sure the the PR is squashed (one commit) and the commit messages starts with one of the following prefixes:  

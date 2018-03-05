@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./src",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "ES2017",
+    "traceResolution": false,
+    "typeRoots": ["types", "node_modules/@types"]
+  },
+  "include": [
+    "./src/**/*",
+    "./src/*"
+  ],
+  "exclude": [
+    "./node_modules/",
+    "**/*.spec.ts"
+  ]
+}

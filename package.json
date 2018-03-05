@@ -1,12 +1,15 @@
 {
   "name": "promise-all-properties",
-  "version": "0.2.0",
+  "version": "2.0.0",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "main": "lib/promiseAllProperties",
   "scripts": {
-    "test": "mocha --recursive --compilers js:babel-register",
-    "dev-test": "mocha --watch --recursive --compilers js:babel-register",
-    "prepublish": "babel -d lib/ src/"
+    "build": "yarn clean && env NODE_ENV=production tsc --project tsconfig.json",
+    "clean": "rm -rf lib",
+    "lint": "tslint --project tsconfig.json --type-check -c tslint.json \"src/**/*.{ts,tsx}\"",
+    "test": "yarn lint && yarn test:once",
+    "test:once": "env NODE_PATH=./src mocha --recursive --require source-map-support/register --require ts-node/register  test/{**/*,**}/*.spec.ts",
+    "test:watch": "env NODE_PATH=./src mocha --recursive --reporter spec --require source-map-support/register --require ts-node/register --watch --watch-extensions ts,tsx test/{**/*,**}/*.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -14,13 +17,24 @@
   },
   "author": "Marcelo Waisman",
   "license": "Unlicense",
+  "dependencies": {
+  },
   "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-latest": "^6.16.0",
-    "babel-register": "^6.16.3",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "mocha": "^3.1.2"
+    "@types/chai": "^4.0.0",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^2.2.48",
+    "@types/node": "^9.3.0",
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.0.0",
+    "copyfiles": "^1.2.0",
+    "mocha": "^5.0.0",
+    "source-map-support": "^0.5.0",
+    "tslib": "^1.7.1",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.6.0",
+    "tslint-config-prettier": "^1.9.0",
+    "tslint-microsoft-contrib": "^5.0.0",
+    "tsutils": "^2.19.0",
+    "typescript": "^2.7.1"
   }
 }
