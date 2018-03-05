@@ -11,7 +11,7 @@ The returned promise is rejected in the following cases:
 * ES6 Promise supporting javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
 * yarn installed
 
-## Usage example (ES6):
+## Usage example (ES6/Typescript):
 ```javascript
 import promiseAllProperties from 'promise-all-properties';
 
