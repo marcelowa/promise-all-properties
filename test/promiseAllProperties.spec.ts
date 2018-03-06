@@ -9,7 +9,7 @@ describe('promiseAllProperties', () => {
   describe('validate rejections', () => {
     it('should reject if not receiving an object', () => {
       return Promise.all([
-        expect((promiseAllProperties as any)(/*undefined*/)).to.be.rejectedWith(-TypeError, 'The input argument must be of type Object'),
+      expect((promiseAllProperties as any)(/*undefined*/)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
         expect((promiseAllProperties as any)(null)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
         expect((promiseAllProperties as any)('string')).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
         expect((promiseAllProperties as any)(123)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
