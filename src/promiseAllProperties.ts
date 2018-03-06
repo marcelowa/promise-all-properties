@@ -8,7 +8,7 @@ export type PromisesMap<T> = { [P in keyof T]: Promise<T[P]> | T[P] };
  */
 export default function promiseAllProperties<T>(promisesMap: PromisesMap<T>): Promise<T> {
   if (promisesMap === null || typeof promisesMap !== 'object') {
-    return Promise.reject('The input argument must be of type Object');
+    return Promise.reject(new TypeError('The input argument must be of type Object'));
   }
 
   const keys = Object.keys(promisesMap);
