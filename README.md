@@ -45,7 +45,8 @@ npm run build
 ## Developers:
 PR's are welcome just make sure the the PR is squashed (one commit) and the commit messages starts with one of the following prefixes:  
 
-- [INITIAL] The initial commit FEAT: Only changes that creating new features or modofying existing features, that are not bug fixes
+- [INITIAL]: The initial commit
+- [FEAT]: Only changes that creating new features or modofying existing features, that are not bug fixes
 - [FIX]: Only bug fixes
 - [DOCS]: Only Documentation changes
 - [STYLE]: Only changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
