@@ -12,8 +12,8 @@ export default function promiseAllProperties<T>(promisesMap: PromisesMap<T>): Pr
   }
 
   const keys = Object.keys(promisesMap);
-  const promises = keys.map((key: keyof T) => {
-    return promisesMap[key] as any;
+  const promises = keys.map((key) => {
+    return (promisesMap as any)[key];
   });
 
   return Promise.all(promises).then(results => {
