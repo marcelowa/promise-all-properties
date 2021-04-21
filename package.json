@@ -10,7 +10,7 @@
     "lint": "tslint --project tsconfig.json --type-check -c tslint.json \"src/**/*.{ts,tsx}\"",
     "test": "npm run lint && npm run test:once",
     "test:once": "env NODE_PATH=./src mocha --recursive --require source-map-support/register --require ts-node/register  test/**/*.spec.ts",
-    "test:watch": "env NODE_PATH=./src mocha --recursive --reporter spec --require source-map-support/register --require ts-node/register --watch --watch-extensions ts,tsx test/{**/*,**}/*.spec.ts",
+    "test:watch": "env NODE_PATH=./src mocha --recursive --reporter spec --require source-map-support/register --require ts-node/register --watch --watch-extensions ts,tsx test/{**/*,*}.spec.ts",
     "prepublishOnly": "npm run build"
   },
   "repository": {
