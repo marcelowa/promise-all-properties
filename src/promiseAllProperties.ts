@@ -1,4 +1,7 @@
-export type PromisesMap<T> = { [P in keyof T]: Promise<T[P]> | T[P] };
+type PlainObj = Record<string, unknown>;
+export type PromisesMap<T extends PlainObj> = {
+  [P in keyof T]: Promise<T[P]> | T[P];
+};
 
 /**
  * Receives an object with promise containing properties and returns a promise that resolves to an object
@@ -6,7 +9,9 @@ export type PromisesMap<T> = { [P in keyof T]: Promise<T[P]> | T[P] };
  * @param  {PromisesMap<T>} promisesMap  the input object with a promise in each property
  * @return {Promise<T>}  a promise that resolved to an object with the same properties containing the resolved values
  */
-export default function promiseAllProperties<T>(promisesMap: PromisesMap<T>): Promise<T> {
+export default function promiseAllProperties<T extends PlainObj>(
+  promisesMap: PromisesMap<T>
+): Promise<T> {
   if (promisesMap === null || typeof promisesMap !== 'object') {
     return Promise.reject(new TypeError('The input argument must be of type Object'));
   }

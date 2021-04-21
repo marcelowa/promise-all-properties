@@ -8,13 +8,22 @@ const expect = chai.expect;
 describe('promiseAllProperties', () => {
   describe('validate rejections', () => {
     it('should reject if not receiving an object', () => {
-      return Promise.all([
-      expect((promiseAllProperties as any)(/*undefined*/)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
-        expect((promiseAllProperties as any)(null)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
-        expect((promiseAllProperties as any)('string')).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
-        expect((promiseAllProperties as any)(123)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
-        expect((promiseAllProperties as any)(true)).to.be.rejectedWith(TypeError, 'The input argument must be of type Object'),
-      ]);
+      const promises = [
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties(/*undefined*/),
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties(null),
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties('string'),
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties(123),
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties(true),
+      ].map((promise) =>
+        expect(promise).to.be.rejectedWith(TypeError, 'The input argument must be of type Object')
+      );
+
+      return Promise.all(promises);
     });
 
     it('should not reject if the input object contains a non promise property', () => {
@@ -39,12 +48,12 @@ describe('promiseAllProperties', () => {
     it('should resolve to an object with resolved values instead', () => {
       const promisesObject = {
         firstPromise : Promise.resolve('result of first promise'),
-        secondPromise : Promise.resolve('result of second promise')
-      }
+        secondPromise : Promise.resolve('result of second promise'),
+      };
       const promise = promiseAllProperties(promisesObject);
       return expect(promise).to.eventually.contain({
           firstPromise : 'result of first promise',
-          secondPromise : 'result of second promise'
+          secondPromise : 'result of second promise',
       });
     });
   });
@@ -53,8 +62,8 @@ describe('promiseAllProperties', () => {
     it('should be rejected if at least one of the promises is rejected', () => {
       const promisesObject = {
         firstPromise : Promise.resolve('result of first promise'),
-        secondPromise : Promise.reject('error in the second promise')
-      }
+        secondPromise : Promise.reject('error in the second promise'),
+      };
       const promise = promiseAllProperties(promisesObject);
       return expect(promise).to.be.rejectedWith('error in the second promise');
     });
