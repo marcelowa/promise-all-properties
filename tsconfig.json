@@ -16,6 +16,7 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "ES2017",
+    "strict": true,
     "traceResolution": false,
     "typeRoots": ["types", "node_modules/@types"]
   },
@@ -24,7 +25,6 @@
     "./src/*"
   ],
   "exclude": [
-    "./node_modules/",
-    "**/*.spec.ts"
+    "./node_modules/"
   ]
 }
