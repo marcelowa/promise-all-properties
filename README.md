@@ -32,17 +32,26 @@ promise.then((resolvedObject) => {
 
 ```
 
-## Run tests:
+## Breaking changes
+
+### 3.0.0
+
+- Passing an Array of values causes the promise to be rejected as invalid
+- Stricter TypeScript signature now errors on non-object arguments.
+
+## Developers
+
+### Run tests:
 ```bash
 npm test
 ```
 
-## Build:
+### Build:
 ```bash
 npm run build
 ```
 
-## Developers:
+### Contributions:
 PR's are welcome just make sure the the PR is squashed (one commit) and the commit messages starts with one of the following prefixes:  
 
 `[INITIAL]`: The initial commit  
