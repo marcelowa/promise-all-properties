@@ -34,7 +34,7 @@ promise.then((resolvedObject) => {
 
 ## Breaking changes
 
-### 3.0.0
+### v3.0.0
 
 - Passing an Array of values causes the promise to be rejected as invalid
 - Stricter TypeScript signature now errors on non-object arguments.
