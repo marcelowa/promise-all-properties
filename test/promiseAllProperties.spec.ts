@@ -19,13 +19,11 @@ describe('promiseAllProperties', () => {
         promiseAllProperties(123),
         // @ts-expect-error  (testing bad input)
         promiseAllProperties(true),
+        // @ts-expect-error  (testing bad input)
+        promiseAllProperties([Promise.resolve(1)]),
       ].map((promise) =>
         expect(promise).to.be.rejectedWith(TypeError, 'The input argument must be of type Object')
       );
-
-      // Correct runtime/JS behavior is (as of yet) unspecified for Array input.
-      // @ts-expect-error  (TypeScript should error on array input)
-      promiseAllProperties([Promise.resolve(1)]);
 
       return Promise.all(promises);
     });

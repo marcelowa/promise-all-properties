@@ -12,9 +12,14 @@ export type PromisesMap<T extends PlainObj> = {
 export default function promiseAllProperties<T extends PlainObj>(
   promisesMap: PromisesMap<T>
 ): Promise<T> {
-  if (promisesMap === null || typeof promisesMap !== 'object') {
-    return Promise.reject(new TypeError('The input argument must be of type Object'));
-  }
+	if (
+		!(typeof process !== undefined && process.env.NODE_ENV === 'production') &&
+		(promisesMap === null ||
+			typeof promisesMap !== 'object' ||
+			Array.isArray(promisesMap))
+	) {
+		return Promise.reject(new TypeError('The input argument must be a plain object'));
+	}
 
   const keys = Object.keys(promisesMap);
   const promises = keys.map((key) => {
