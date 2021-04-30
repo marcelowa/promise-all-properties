@@ -1,6 +1,6 @@
 {
   "name": "promise-all-properties",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "main": "lib/promiseAllProperties.js",
   "types": "lib/promiseAllProperties.d.ts",
@@ -19,12 +19,11 @@
   },
   "author": "Marcelo Waisman",
   "license": "Unlicense",
-  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.0.0",
     "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^8.0.0",
-    "@types/node": "^14.0.23",
+    "@types/node": "^15.0.1",
     "chai": "^4.0.2",
     "chai-as-promised": "^7.0.0",
     "copyfiles": "^2.1.0",
@@ -34,7 +33,6 @@
     "tslib": "^2.0.0",
     "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.9.0",
-    "tslint-microsoft-contrib": "^6.2.0",
     "tsutils": "^3.2.0",
     "typescript": "^4.0.0"
   }
