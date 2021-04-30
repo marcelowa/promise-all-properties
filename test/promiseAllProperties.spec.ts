@@ -22,7 +22,7 @@ describe('promiseAllProperties', () => {
         // @ts-expect-error  (testing bad input)
         promiseAllProperties([Promise.resolve(1)]),
       ].map((promise) =>
-        expect(promise).to.be.rejectedWith(TypeError, 'The input argument must be of type Object')
+        expect(promise).to.be.rejectedWith(TypeError, 'The input argument must be a plain object')
       );
 
       return Promise.all(promises);
