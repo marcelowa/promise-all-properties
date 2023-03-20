@@ -33,3 +33,5 @@ export default function promiseAllProperties<T extends PlainObj>(
     }, {});
   });
 }
+
+export { promiseAllProperties };
