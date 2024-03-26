@@ -1,17 +1,20 @@
 # Promise all properties
 [![tests](https://github.com/marcelowa/promise-all-properties/actions/workflows/ci.yaml/badge.svg)](https://github.com/marcelowa/promise-all-properties/actions/workflows/ci.yaml)
 
-A helper function that receives an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises.  
+A helper function that receives an object with a [Promise] in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises.  
 
 The returned promise is rejected in the following cases:  
 1. The input argument is not an "object"  
-2. at least one of the promises is rejected  
+2. At least one of the promises are rejected  
+
+[Promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 ## Requirements
-* ES6 Promise supporting javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
-* yarn installed
+* ES6 Promise supporting Javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
+* a node package manager installed (such as NPM or Yarn)
 
 ## Usage example (ES6/Typescript):
+
 ```javascript
 import promiseAllProperties from 'promise-all-properties';
 
@@ -31,6 +34,38 @@ promise.then((resolvedObject) => {
 });
 
 ```
+
+## Promise all settled properties
+
+This helper function works the same as `promiseAllProperties`, except it uses [`Promise.allSettled`][allSettled] instead of [`Promise.all`][all]. It is therefore possible to get the status of all the promises, regardless of how many of them were fulfilled or rejected.
+
+Usage example:
+
+```javascript
+import {promiseAllSettledProperties} from 'promise-all-properties';
+
+const promisesObject = {
+  someProperty: Promise.resolve('resolve value'),
+  anotherProperty: Promise.reject(new Error('a rejection')),
+  yetAnotherProperty: Promise.reject(new Error('another rejection')),
+};
+
+const promise = promiseAllSettledProperties(promisesObject);
+
+promise.then((resolvedObject) => {
+  console.log(resolvedObject);
+  // {
+  //   someProperty: {status: 'fulfilled', value: 'resolve value'},
+  //   anotherProperty: {status: 'rejected', reason: Error('a rejection')},
+  //   yetAnotherProperty: {status: 'rejected', reason: Error('another rejection')}
+  // }
+});
+
+// By comparison, promiseAllProperties(promisesObject) would reject with Error('a rejection')
+```
+
+[allSettled]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
+[all]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 
 ## Breaking changes
 
