@@ -69,6 +69,9 @@ promise.then((resolvedObject) => {
 
 ## Breaking changes
 
+### v4.0.0
+- Minimum Node.js version is now 12.20.0 to support the promiseAllSettledProperties method
+
 ### v3.0.0
 
 - Passing an Array of values causes the promise to be rejected as invalid
