@@ -1,13 +1,14 @@
-import { test } from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, it, expect } from '@jest/globals';
 import { promiseAllProperties } from '../src/promiseAllProperties.js';
 
-test('named export', async (t) => {
-  const { a, b } = await promiseAllProperties({
-    a: Promise.resolve(1 as const),
-    b: Promise.resolve(2 as const),
-  });
+describe('named export', () => {
+  it('should be able to use named import', async () => {
+    const { a, b } = await promiseAllProperties({
+      a: Promise.resolve(1 as const),
+      b: Promise.resolve(2 as const),
+    });
 
-  assert.strictEqual(a, 1);
-  assert.strictEqual(b, 2);
+    expect(a).toBe(1);
+    expect(b).toBe(2);
+  });
 });

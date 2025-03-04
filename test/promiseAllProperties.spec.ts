@@ -1,10 +1,9 @@
-import { test, describe } from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, it, expect } from '@jest/globals';
 import promiseAllProperties, { promiseAllSettledProperties } from '../src/promiseAllProperties.js';
 
 describe('promiseAllProperties', () => {
   describe('validate rejections', () => {
-    test('should reject if not receiving an object', async () => {
+    it('should reject if not receiving an object', async () => {
       const promises = [
         // @ts-expect-error  (testing bad input)
         promiseAllProperties(/*undefined*/),
@@ -21,57 +20,51 @@ describe('promiseAllProperties', () => {
       ];
 
       for (const promise of promises) {
-        await assert.rejects(promise, {
-          name: 'TypeError',
-          message: 'The input argument must be a plain object'
-        });
+        await expect(promise).rejects.toThrow('The input argument must be a plain object');
       }
     });
 
-    test('should not reject if the input object contains a non promise property', async () => {
+    it('should not reject if the input object contains a non promise property', async () => {
       const result = await promiseAllProperties({ x: 1 });
-      assert.deepStrictEqual(result, { x: 1 });
+      expect(result).toEqual({ x: 1 });
     });
   });
 
   describe('the input is an empty object', () => {
-    test('should return a promise', () => {
-      assert.ok(promiseAllProperties({}) instanceof Promise);
+    it('should return a promise', () => {
+      expect(promiseAllProperties({})).toBeInstanceOf(Promise);
     });
 
-    test('should return a promise the resolves to an object', async () => {
+    it('should return a promise that resolves to an object', async () => {
       const result = await promiseAllProperties({});
-      assert.equal(typeof result, 'object');
+      expect(typeof result).toBe('object');
     });
   });
 
   describe('input with promises that should resolve', () => {
-    test('should resolve to an object with resolved values instead', async () => {
+    it('should resolve to an object with resolved values instead', async () => {
       const promisesObject = {
         firstPromise: Promise.resolve('result of first promise'),
         secondPromise: Promise.resolve('result of second promise'),
       };
       const result = await promiseAllProperties(promisesObject);
-      assert.deepStrictEqual(result, {
+      expect(result).toEqual({
         firstPromise: 'result of first promise',
         secondPromise: 'result of second promise',
       });
     });
 
-    test('should be rejected if at least one of the promises is rejected', async () => {
+    it('should be rejected if at least one of the promises is rejected', async () => {
       const promisesObject = {
         firstPromise: Promise.resolve('result of first promise'),
         secondPromise: Promise.reject('error in the second promise'),
       };
-      await assert.rejects(
-        promiseAllProperties(promisesObject),
-        /error in the second promise/
-      );
+      await expect(promiseAllProperties(promisesObject)).rejects.toMatch(/error in the second promise/);
     });
   });
 
   describe('the typing', () => {
-    test('returns the expected type', () => {
+    it('returns the expected type', () => {
       type ExpectedType = Promise<{
         myString: string,
         myLiteral: 'a literal',
@@ -92,7 +85,7 @@ describe('promiseAllProperties', () => {
       result = expectedType;
     });
 
-    test('fails typechecking if a promise type is wrong', () => {
+    it('fails typechecking if a promise type is wrong', () => {
       type ExpectedType = Promise<{
         myString: string,
         myLiteral: 'a literal',
@@ -113,7 +106,7 @@ describe('promiseAllProperties', () => {
 
 describe('promiseAllSettledProperties', () => {
   describe('validate rejections', () => {
-    test('should reject if not receiving an object', async () => {
+    it('should reject if not receiving an object', async () => {
       const promises = [
         // @ts-expect-error  (testing bad input)
         promiseAllSettledProperties(/*undefined*/),
@@ -130,32 +123,29 @@ describe('promiseAllSettledProperties', () => {
       ];
 
       for (const promise of promises) {
-        await assert.rejects(promise, {
-          name: 'TypeError',
-          message: 'The input argument must be a plain object'
-        });
+        await expect(promise).rejects.toThrow('The input argument must be a plain object');
       }
     });
 
-    test('should not reject if the input object contains a non promise property', async () => {
+    it('should not reject if the input object contains a non promise property', async () => {
       const result = await promiseAllSettledProperties({ x: 1 });
-      assert.deepStrictEqual(result, { x: { status: 'fulfilled', value: 1 } });
+      expect(result).toEqual({ x: { status: 'fulfilled', value: 1 } });
     });
   });
 
   describe('the input is an empty object', () => {
-    test('should return a promise', () => {
-      assert.ok(promiseAllSettledProperties({}) instanceof Promise);
+    it('should return a promise', () => {
+      expect(promiseAllSettledProperties({})).toBeInstanceOf(Promise);
     });
 
-    test('should return a promise that resolves to an object', async () => {
+    it('should return a promise that resolves to an object', async () => {
       const result = await promiseAllSettledProperties({});
-      assert.equal(typeof result, 'object');
+      expect(typeof result).toBe('object');
     });
   });
 
   describe('input with promises', () => {
-    test('should resolve to an object with the result of each promise', async () => {
+    it('should resolve to an object with the result of each promise', async () => {
       const firstRejection = new TypeError('Rejection 1');
       const secondRejection = new Error('Rejection 2');
       const promisesObject = {
@@ -165,7 +155,7 @@ describe('promiseAllSettledProperties', () => {
         fourthPromise: Promise.reject(secondRejection),
       };
       const result = await promiseAllSettledProperties(promisesObject);
-      assert.deepStrictEqual(result, {
+      expect(result).toEqual({
         firstPromise: { status: 'fulfilled', value: 'result of first promise' },
         secondPromise: { status: 'fulfilled', value: 'result of second promise' },
         thirdPromise: { status: 'rejected', reason: firstRejection },
@@ -175,7 +165,7 @@ describe('promiseAllSettledProperties', () => {
   });
 
   describe('the typing', () => {
-    test('returns the expected type', () => {
+    it('returns the expected type', () => {
       type RejectedOutcome = {
         status: 'rejected',
         reason: any,
@@ -217,7 +207,7 @@ describe('promiseAllSettledProperties', () => {
       result = expectedType;
     });
 
-    test('fails typechecking if a promise type is wrong', () => {
+    it('fails typechecking if a promise type is wrong', () => {
       type RejectedOutcome = {
         status: 'rejected',
         reason: any,
@@ -255,7 +245,7 @@ describe('promiseAllSettledProperties', () => {
       });
     });
 
-    test('fails typechecking if a non-promise type is wrong', () => {
+    it('fails typechecking if a non-promise type is wrong', () => {
       type RejectedOutcome = {
         status: 'rejected',
         reason: any,
