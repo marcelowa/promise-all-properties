@@ -21,7 +21,7 @@ type Promises<T extends PlainObj> = PromisesMap<T>[keyof T][];
  * @return {Promise<T>}  a promise that resolved to an object with the same properties containing the resolved values
  * @see Promise.all
  */
-export default function promiseAllProperties<T extends PlainObj>(
+export function promiseAllProperties<T extends PlainObj>(
   promisesMap: PromisesMap<T>
 ): Promise<T> {
   if (!isProduction() && !isValidPromisesMap(promisesMap)) {
@@ -46,7 +46,7 @@ export default function promiseAllProperties<T extends PlainObj>(
  * @return a promise that resolves to an object with the same properties containing the outcomes
  * @see Promise.allSettled
  */
-function promiseAllSettledProperties<T extends PlainObj>(
+export function promiseAllSettledProperties<T extends PlainObj>(
   promisesMap: PromisesMap<T>
 ): Promise<PromiseOutcomesMap<T>> {
   if (!isProduction() && !isValidPromisesMap(promisesMap)) {
@@ -85,4 +85,5 @@ function reassembleResultsAsMap<T extends PlainObj, R>(keys: Keys<T>, results: R
   // so the caller must cast the result to the appropriate type
 }
 
-export {promiseAllProperties, promiseAllSettledProperties};
+// Export default as a named export for better ESM compatibility
+export { promiseAllProperties as default };
