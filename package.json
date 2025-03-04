@@ -1,16 +1,15 @@
 {
   "name": "promise-all-properties",
-  "version": "4.0.4",
+  "version": "5.0.0-alpha.2",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
+  "type": "module",
   "main": "lib/promiseAllProperties.js",
   "types": "lib/promiseAllProperties.d.ts",
   "scripts": {
     "build": "npm run clean && env NODE_ENV=production tsc --project tsconfig.json",
     "clean": "rm -rf lib",
-    "lint": "tslint --project tsconfig.json --type-check -c tslint.json \"src/**/*.{ts,tsx}\"",
-    "test": "npm run lint && npm run test:once",
-    "test:once": "env NODE_PATH=./src mocha --recursive --require source-map-support/register --require ts-node/register  test/**/*.spec.ts",
-    "test:watch": "env NODE_PATH=./src mocha --recursive --reporter spec --require source-map-support/register --require ts-node/register --watch --watch-extensions ts,tsx test/{**/*,*}.spec.ts",
+    "test": "node --test --loader ts-node/esm test/*.spec.ts",
+    "test:watch": "node --test --watch --loader ts-node/esm test/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -20,20 +19,18 @@
   "author": "Marcelo Waisman",
   "license": "Unlicense",
   "devDependencies": {
-    "@types/chai": "^4.0.0",
-    "@types/chai-as-promised": "^7.1.0",
+    "@types/chai": "^5.0.0",
+    "@types/chai-as-promised": "^8.0.0",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.8",
-    "chai": "^4.0.2",
-    "chai-as-promised": "^7.0.0",
+    "@types/node": "^22.0.0",
+    "chai": "^5.0.0",
+    "chai-as-promised": "^8.0.0",
     "copyfiles": "^2.1.0",
-    "mocha": "^10.5.1",
+    "mocha": "^11.0.0",
     "source-map-support": "^0.5.12",
     "ts-node": "^10.4.0",
     "tslib": "^2.0.0",
-    "tslint": "^6.1.1",
-    "tslint-config-prettier": "^1.9.0",
     "tsutils": "^3.2.0",
-    "typescript": "^4.0.0"
+    "typescript": "^5.0.0"
   }
 }

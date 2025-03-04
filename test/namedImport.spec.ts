@@ -1,15 +1,15 @@
-import * as chai from 'chai';
-import { promiseAllProperties } from '../src/promiseAllProperties';
+import { test, describe } from 'node:test';
+import assert from 'node:assert/strict';
+import { promiseAllProperties } from '../src/promiseAllProperties.js';
 
-const expect = chai.expect;
-describe('named export', () => {
-  it('should be able to use named import', async () => {
+describe('namedImport', () => {
+  test('named export', async () => {
     const { a, b } = await promiseAllProperties({
       a: Promise.resolve(1 as const),
       b: Promise.resolve(2 as const),
     });
 
-    expect(a).to.equal(1);
-    expect(b).to.equal(2);
-  });
+    assert.strictEqual(a, 1);
+    assert.strictEqual(b, 2);
+  })
 });
