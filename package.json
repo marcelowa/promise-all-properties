@@ -1,6 +1,6 @@
 {
   "name": "promise-all-properties",
-  "version": "5.0.0-alpha.5",
+  "version": "5.0.0",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "type": "module",
   "main": "./lib/cjs/promiseAllProperties.cjs",
