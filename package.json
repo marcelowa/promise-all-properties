@@ -1,15 +1,25 @@
 {
   "name": "promise-all-properties",
-  "version": "5.0.0-alpha.2",
+  "version": "5.0.0-alpha.3",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "type": "module",
-  "main": "lib/promiseAllProperties.js",
-  "types": "lib/promiseAllProperties.d.ts",
+  "main": "./lib/cjs/promiseAllProperties.js",
+  "module": "./lib/esm/promiseAllProperties.js",
+  "types": "./lib/esm/promiseAllProperties.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/cjs/promiseAllProperties.js",
+      "import": "./lib/esm/promiseAllProperties.js",
+      "types": "./lib/esm/promiseAllProperties.d.ts"
+    }
+  },
   "scripts": {
-    "build": "npm run clean && env NODE_ENV=production tsc --project tsconfig.json",
     "clean": "rm -rf lib",
-    "test": "node --test --loader ts-node/esm test/*.spec.ts",
-    "test:watch": "node --test --watch --loader ts-node/esm test/*.spec.ts",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "test": "node --import tsx --test test/*.spec.ts",
+    "test:watch": "node --import tsx --test --watch test/*.spec.ts",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -19,16 +29,9 @@
   "author": "Marcelo Waisman",
   "license": "Unlicense",
   "devDependencies": {
-    "@types/chai": "^5.0.0",
-    "@types/chai-as-promised": "^8.0.0",
-    "@types/mocha": "^10.0.7",
     "@types/node": "^22.0.0",
-    "chai": "^5.0.0",
-    "chai-as-promised": "^8.0.0",
-    "copyfiles": "^2.1.0",
-    "mocha": "^11.0.0",
     "source-map-support": "^0.5.12",
-    "ts-node": "^10.4.0",
+    "tsx": "^4.7.1",
     "tslib": "^2.0.0",
     "tsutils": "^3.2.0",
     "typescript": "^5.0.0"

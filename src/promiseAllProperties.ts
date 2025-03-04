@@ -85,4 +85,5 @@ function reassembleResultsAsMap<T extends PlainObj, R>(keys: Keys<T>, results: R
   // so the caller must cast the result to the appropriate type
 }
 
-export default promiseAllProperties;
+// Export default as a named export for better ESM compatibility
+export { promiseAllProperties as default };

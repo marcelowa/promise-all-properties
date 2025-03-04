@@ -6,24 +6,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./lib",
     "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
-    "target": "ES2022",
+    "target": "ES2017",
     "strict": true,
     "traceResolution": false,
     "typeRoots": ["types", "node_modules/@types"]
   },
-  "include": [
-    "./src/**/*",
-    "./src/*"
-  ],
   "exclude": [
     "./node_modules/"
   ]
