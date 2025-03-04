@@ -1,14 +1,14 @@
 {
   "name": "promise-all-properties",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.5",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "type": "module",
-  "main": "./lib/cjs/promiseAllProperties.js",
+  "main": "./lib/cjs/promiseAllProperties.cjs",
   "module": "./lib/esm/promiseAllProperties.js",
   "types": "./lib/esm/promiseAllProperties.d.ts",
   "exports": {
     ".": {
-      "require": "./lib/cjs/promiseAllProperties.js",
+      "require": "./lib/cjs/promiseAllProperties.cjs",
       "import": "./lib/esm/promiseAllProperties.js",
       "types": "./lib/esm/promiseAllProperties.d.ts"
     }
@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build:esm": "tsc --project tsconfig.esm.json",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json && renamer --find js --replace cjs \"./lib/cjs/**/*\"",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "test": "node --import tsx --test test/*.spec.ts",
     "test:watch": "node --import tsx --test --watch test/*.spec.ts",
@@ -30,10 +30,11 @@
   "license": "Unlicense",
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "renamer": "^5.0.2",
     "source-map-support": "^0.5.12",
-    "tsx": "^4.7.1",
     "tslib": "^2.0.0",
     "tsutils": "^3.2.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.0.0"
   }
 }
