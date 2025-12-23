@@ -1,6 +1,6 @@
 {
   "name": "promise-all-properties",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "A helper function that recevies an object with a promise in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises",
   "type": "module",
   "main": "./lib/cjs/promiseAllProperties.cjs",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@jest/globals": "^27.0.0",
     "@types/jest": "^27.0.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^22.0.0",
     "jest": "^27.0.0",
     "renamer": "^5.0.2",
     "ts-jest": "^27.0.0",
