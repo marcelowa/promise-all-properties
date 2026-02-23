@@ -1,26 +1,29 @@
 # Promise all properties
+
 [![tests](https://github.com/marcelowa/promise-all-properties/actions/workflows/ci.yaml/badge.svg)](https://github.com/marcelowa/promise-all-properties/actions/workflows/ci.yaml)
 
-A helper function that receives an object with a [Promise] in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises.  
+A helper function that receives an object with a [Promise] in each property and returns a promise that resolves to an object with the same properties and the resolved values of the promises.
 
-The returned promise is rejected in the following cases:  
-1. The input argument is not an "object"  
-2. At least one of the promises are rejected  
+The returned promise is rejected in the following cases:
+
+1. The input argument is not an "object"
+2. At least one of the promises are rejected
 
 [Promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 ## Requirements
-* ES6 Promise supporting Javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
-* a node package manager installed (such as NPM or Yarn)
+
+- ES6 Promise supporting Javascript engine (browser or Node.js), or at least an ES6 Promise polyfill
+- a node package manager installed (such as NPM or Yarn)
 
 ## Usage example (ES6/Typescript):
 
 ```javascript
-import promiseAllProperties from 'promise-all-properties';
+import promiseAllProperties from "promise-all-properties";
 
 const promisesObject = {
-  someProperty: Promise.resolve('resolve value'),
-  anotherProperty: Promise.resolve('another resolved value'),
+  someProperty: Promise.resolve("resolve value"),
+  anotherProperty: Promise.resolve("another resolved value"),
 };
 
 const promise = promiseAllProperties(promisesObject);
@@ -32,7 +35,6 @@ promise.then((resolvedObject) => {
   //   anotherProperty: 'another resolved value'
   // }
 });
-
 ```
 
 ## Promise all settled properties
@@ -42,12 +44,12 @@ This helper function works the same as `promiseAllProperties`, except it uses [`
 Usage example:
 
 ```javascript
-import {promiseAllSettledProperties} from 'promise-all-properties';
+import { promiseAllSettledProperties } from "promise-all-properties";
 
 const promisesObject = {
-  someProperty: Promise.resolve('resolve value'),
-  anotherProperty: Promise.reject(new Error('a rejection')),
-  yetAnotherProperty: Promise.reject(new Error('another rejection')),
+  someProperty: Promise.resolve("resolve value"),
+  anotherProperty: Promise.reject(new Error("a rejection")),
+  yetAnotherProperty: Promise.reject(new Error("another rejection")),
 };
 
 const promise = promiseAllSettledProperties(promisesObject);
@@ -69,7 +71,12 @@ promise.then((resolvedObject) => {
 
 ## Breaking changes
 
+### v6.0.0
+
+- Minimum Node.js version is now 18.0.0 to fix lodash prototype pollution vulnerability
+
 ### v4.0.0
+
 - Minimum Node.js version is now 12.20.0 to support the promiseAllSettledProperties method
 
 ### v3.0.0
@@ -80,17 +87,20 @@ promise.then((resolvedObject) => {
 ## Developers
 
 ### Run tests:
+
 ```bash
 npm test
 ```
 
 ### Build:
+
 ```bash
 npm run build
 ```
 
 ### Contributions:
-PR's are welcome just make sure the the PR is squashed (one commit) and the commit messages starts with one of the following prefixes:  
+
+PR's are welcome just make sure the the PR is squashed (one commit) and the commit messages starts with one of the following prefixes:
 
 `[INITIAL]`: The initial commit  
 `[FEAT]`: Only changes that creating new features or modofying existing features, that are not bug fixes  
@@ -100,10 +110,10 @@ PR's are welcome just make sure the the PR is squashed (one commit) and the comm
 `[REFACTOR]`: Only code changes that are neither fixes or features  
 `[TEST]`: Only changes that are adding new tests or modifying existing tests  
 `[TOOLS]`: Only changes that affect external processeses like build tools, dev tools, auxiliary tools and libraries such as documentation generation  
-`[CLEANUP]`: Only code removal: code lines, comment lines or files without affecting the project whatsoever  
+`[CLEANUP]`: Only code removal: code lines, comment lines or files without affecting the project whatsoever
 
 ## License
-Public domain [Unlicense][unlicense]
 
+Public domain [Unlicense][unlicense]
 
 [unlicense]: http://unlicense.org/
